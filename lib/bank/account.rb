@@ -5,6 +5,7 @@ module Bank
     WRONG_PIN_MAX_TRIES = 3
 
     class WrongPINError < ArgumentError; end
+    class SamePINError < ArgumentError; end
     class BlockedPINError < ArgumentError; end
 
     attr_reader :name
@@ -34,6 +35,7 @@ module Bank
 
     def change_pin(old_pin, new_pin)
       check_pin(old_pin)
+      fail SamePINError if old_pin == new_pin
       @pin = new_pin
     end
 

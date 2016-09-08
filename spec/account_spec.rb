@@ -30,6 +30,10 @@ describe Bank::Account do
     account.instance_variable_get(:@pin).must_equal "2222"
   end
 
+  it "must prevent updating PIN with old one" do
+    -> { account.change_pin(pin, pin) }.must_raise Bank::Account::SamePINError
+  end
+
   it "must be able to reset PIN by providing right one" do
     account.reset_pin!(pin)
     account.instance_variable_get(:@pin).must_equal "0000"

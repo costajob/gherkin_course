@@ -1,9 +1,3 @@
-require "bank/account"
-
-Given(/^i have \$(\d+) in my account$/) do |balance|
-  @account = Bank::Account.new("Elvis", balance)
-end
-
 When(/^i request \$(\d+)$/) do |amount|
   @account.withdraw(amount, "0000")
 end
