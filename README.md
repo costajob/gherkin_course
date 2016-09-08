@@ -5,7 +5,7 @@
 * [Usage](#usage)
 
 ## Scope
-This repository is the companion Ruby code to the [Gherkin](https://github.com/cucumber/cucumber/wiki/Gherkin) crash course i presented for my team mates.
+This repository is the companion Ruby code to the [Gherkin crash course](http://www.slideshare.net/MicheleCosta3/gherkin-crash-course) i presented for my team mates.
 
 ## Bank Account
 I created a plain simple bank account class to test balance, deposit, withdraw and PIN reset functionalities.
