@@ -25,12 +25,16 @@ describe Bank::Account do
     account.balance(pin).must_equal 99_000_000
   end
 
+  it "must prevent withdraw with insufficient balance" do
+    -> { account.withdraw(101_000_000, pin) }.must_raise Bank::Account::InsufficientBalanceError
+  end
+
   it "must be able to change PIN by providing old one" do
     account.change_pin(pin, "2222")
     account.instance_variable_get(:@pin).must_equal "2222"
   end
 
-  it "must prevent updating PIN with old one" do
+  it "must prevent updating PIN with same value" do
     -> { account.change_pin(pin, pin) }.must_raise Bank::Account::SamePINError
   end
 

@@ -7,6 +7,7 @@ module Bank
     class WrongPINError < ArgumentError; end
     class SamePINError < ArgumentError; end
     class BlockedPINError < ArgumentError; end
+    class InsufficientBalanceError < ArgumentError; end
 
     attr_reader :name
 
@@ -30,7 +31,10 @@ module Bank
 
     def withdraw(amount, pin)
       check_pin(pin)
-      @balance -= amount.to_i
+      amount.to_i.tap do |a|
+        fail InsufficientBalanceError, "Your balance is insufficient!" if a > @balance
+        @balance -= a
+      end
     end
 
     def change_pin(old_pin, new_pin)
