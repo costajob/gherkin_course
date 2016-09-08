@@ -15,7 +15,7 @@ describe Bank::Account do
     account.balance(pin).must_equal 100_000_000
   end
 
-  it "must augment cash by deposit with right PIN" do
+  it "must deposit cash with right PIN" do
     account.deposit(1_000_000, pin)
     account.balance(pin).must_equal 101_000_000
   end
@@ -33,6 +33,18 @@ describe Bank::Account do
   it "must be able to reset PIN by providing right one" do
     account.reset_pin!(pin)
     account.instance_variable_get(:@pin).must_equal "0000"
+  end
+  
+  describe "textual amount" do
+    it "must support deposit of textual amount" do
+      account.deposit("1_000_000", pin)
+      account.balance(pin).must_equal 101_000_000
+    end
+
+    it "must support withdraw of textual amount" do
+      account.withdraw("1_000_000", pin)
+      account.balance(pin).must_equal 99_000_000
+    end
   end
 
   describe "wrong PIN" do

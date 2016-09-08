@@ -11,7 +11,7 @@ module Bank
 
     def initialize(name, amount, pin = DEFAULT_PIN, currency = DEFAULT_CURRENCY)
       @name = name
-      @balance = amount
+      @balance = amount.to_i
       @pin = pin
       @currency = currency
       reset_pin_tries!
@@ -24,12 +24,12 @@ module Bank
 
     def deposit(amount, pin)
       check_pin(pin)
-      @balance += amount
+      @balance += amount.to_i
     end
 
     def withdraw(amount, pin)
       check_pin(pin)
-      @balance -= amount
+      @balance -= amount.to_i
     end
 
     def change_pin(old_pin, new_pin)
