@@ -18,7 +18,7 @@ bundle install
 
 Once done run Cucumber specs by:
 ```
-cucumber
+bundle exec cucumber
 ```
 
 Run unit tests by:
